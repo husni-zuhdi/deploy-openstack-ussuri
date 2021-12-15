@@ -17,9 +17,9 @@ ssh -i "openstack-btech.pem" -o "StrictHostKeyChecking no" ubuntu@compute "echo 
 echo "Success copy public key to controller and compute"
 echo "Update and set python3 as default python version in controller and compute"
 for i in controller compute; do
-    ssh $i "sudo apt update -y; sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 1"
+    ssh -o "StrictHostKeyChecking no" $i "sudo apt update -y; sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 1"
     echo "Attach new network interface eth1 in $i"
-    ssh $i "sudo cat <<EOT > /etc/network/interfaces
+    ssh -o "StrictHostKeyChecking no" $i "sudo cat <<EOT > /etc/network/interfaces
 auto eth1
 iface  eth1 inet manual
 up ip link set dev $IFACE up
