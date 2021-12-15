@@ -9,7 +9,7 @@ echo "Test connection to Controller and Compute"
 ping -c 3 compute
 ping -c 3 controller
 echo "Generate public key and distribute it to controller and compute"
-ssh-keygen -q -t rsa -N '' -f /home/ubuntu/.ssh/id_rsa <<<y >/dev/null 2>&1
+ssh-keygen -q -t rsa -m PEM -N '' -f /home/ubuntu/.ssh/id_rsa <<<y >/dev/null 2>&1
 pubkey=$(cat /home/ubuntu/.ssh/id_rsa.pub)
 echo "Copy public key to controller and compute"
 echo $pubkey >> /home/ubuntu/.ssh/authorized_keys
