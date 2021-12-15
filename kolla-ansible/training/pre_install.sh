@@ -10,10 +10,10 @@ ping -c 3 compute
 ping -c 3 controller
 echo "Generate public key and distribute it to controller and compute"
 ssh-keygen -q -t rsa -N '' -f /home/ubuntu/.ssh/id_rsa <<<y >/dev/null 2>&1
-pubkey=$(cat ~/.ssh/id_rsa.pub)
+pubkey=$(cat /home/ubuntu/.ssh/id_rsa.pub)
 echo "Copy public key to controller and compute"
-echo $pubkey >> ~/.ssh/authorized_keys
-ssh -i "openstack-btech.pem" ubuntu@compute "echo $pubkey >> ~/.ssh/authorized_keys"
+echo $pubkey >> /home/ubuntu/.ssh/authorized_keys
+ssh -i "openstack-btech.pem" ubuntu@compute "echo $pubkey >> /home/ubuntu/.ssh/authorized_keys"
 echo "Success copy public key to controller and compute"
 echo "Update and set python3 as default python version in controller and compute"
 for i in controller compute; do
