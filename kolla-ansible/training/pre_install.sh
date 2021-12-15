@@ -1,4 +1,5 @@
 #!/bin/bash
+apt update -y
 echo "Register compute and controller IP addresses"
 ip_controller=$1
 ip_compute=$2
