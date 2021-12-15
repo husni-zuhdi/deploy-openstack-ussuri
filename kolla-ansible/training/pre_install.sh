@@ -13,7 +13,7 @@ ssh-keygen -q -t rsa -N '' -f /home/ubuntu/.ssh/id_rsa <<<y >/dev/null 2>&1
 pubkey=$(cat /home/ubuntu/.ssh/id_rsa.pub)
 echo "Copy public key to controller and compute"
 echo $pubkey >> /home/ubuntu/.ssh/authorized_keys
-ssh -i "openstack-btech.pem" ubuntu@compute "echo $pubkey >> /home/ubuntu/.ssh/authorized_keys"
+ssh -i "openstack-btech.pem" -o "StrictHostKeyChecking no" ubuntu@compute "echo $pubkey >> /home/ubuntu/.ssh/authorized_keys"
 echo "Success copy public key to controller and compute"
 echo "Update and set python3 as default python version in controller and compute"
 for i in controller compute; do
