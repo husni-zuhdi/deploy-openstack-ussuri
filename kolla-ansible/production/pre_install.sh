@@ -24,4 +24,7 @@ parted /dev/vdb
 #mkpart primary ext4 1MB 30000MB
 #quit
 echo "Format new partition"
-mkfs -t ext4 /dev/vdb1 
+mkfs -t ext4 /dev/vdb1
+echo "Make lvm backend for Cinder"
+pvcreate /dev/vdb1 <<<y
+vgcreate cinder-volumes /dev/vdb1
