@@ -17,3 +17,11 @@ echo "Update and set python3 as default python version in controller and compute
 for i in node04-controller node-04-compute; do
     ssh $i "sudo apt update -y"
 done
+echo "Create partition disk for Cinder Service"
+parted /dev/vdb
+# Enter this command while in GNU Parted
+#mklabel gpt
+#mkpart primary ext4 1MB 30000MB
+#quit
+echo "Format new partition"
+mkfs -t ext4 /dev/vdb1 
