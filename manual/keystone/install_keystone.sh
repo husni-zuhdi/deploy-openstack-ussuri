@@ -5,7 +5,7 @@ add-apt-repository cloud-archive:ussuri -y
 apt install keystone python3-openstackclient apache2 libapache2-mod-wsgi-py3 python3-oauth2client -y
 echo "Installing prerequisites"
 KEYSTONE_DBPASS=keystone_pass_172
-CONTROLLER_IP=13.229.157.245
+CONTROLLER_IP=$1
 mysql -e "CREATE DATABASE keystone;"
 mysql -e "GRANT ALL PRIVILEGES ON keystone.* TO keystone@'localhost' IDENTIFIED BY '$KEYSTONE_DBPASS';"
 mysql -e "GRANT ALL PRIVILEGES ON keystone.* TO keystone@'%' IDENTIFIED BY '$KEYSTONE_DBPASS';"

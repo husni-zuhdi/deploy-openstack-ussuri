@@ -15,12 +15,5 @@ openstack hypervisor list
 
 # Turn up br-ex
 for i in node04-controller node-04-compute; do
-	case i in
-        node04-controller)
-		ssh $i -p 42241 ip link set br-ex up;;
-        node-04-compute)
-		ssh $i -p 42242 ip link set br-ex up;;
-        *)
-        read -p "$i is not a hostname!";;
-    esac
+	ssh $i ip link set br-ex up
 done
